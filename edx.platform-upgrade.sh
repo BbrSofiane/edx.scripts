@@ -38,10 +38,10 @@
 NOW="$(date +%Y%m%dT%H%M%S)"
 
 # Upgrade to the most recent code base. thus far i've found this more reliable than named releases.
-export OPENEDX_RELEASE=master
+export OPENEDX_RELEASE=open-release/hawthorn.master
 
 # Step 1: Completely shut down all edX services
-sudo /edx/bin/supervisorctl stop edxapp:          # for edX platform prior to Ginkgo
+#sudo /edx/bin/supervisorctl stop edxapp:          # for edX platform prior to Ginkgo
 sudo /edx/bin/supervisorctl stop lms              # for Ginko and after
 sudo /edx/bin/supervisorctl stop lms              # for Ginkgo and after
 sudo /edx/bin/supervisorctl stop edxapp_worker:
