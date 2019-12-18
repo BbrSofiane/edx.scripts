@@ -6,8 +6,8 @@
 #
 # date:       feb-2019
 #
-# usage:      edx.delete-course.sh list - generate a list of all courses
-#             edx.delete-course.sh delete <Course ID>
+# usage:      edx.manage-course.sh list - generate a list of all courses
+#             edx.manage-course.sh delete <Course ID>
 #
 #---------------------------------------------------------
 
@@ -31,5 +31,5 @@ then
     fi
 fi
 
-echo "edx.delete-course.sh list - generate a list of all courses"
-echo "edx.delete-course.sh delete <Course ID>"
+echo "edx.manage-course.sh list - generate a list of all courses"
+echo "edx.manage-course.sh delete <Course ID>"

@@ -14,8 +14,8 @@
 cd ~
 
 # Prerequisites: ensure that locales are set on your server. if not the ansible boostrap script below will break.
-export LC_ALL="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
+export LC_ALL="en_GB.UTF-8"
+export LC_CTYPE="en_GB.UTF-8"
 
 # Delve into these settings only if you are installing a lanuage other than English
 #sudo locale-gen es_ES es_ES.UTF-8

@@ -25,7 +25,7 @@ sudo /edx/bin/supervisorctl restart discovery
 sudo /edx/bin/supervisorctl restart ecommerce
 sudo /edx/bin/supervisorctl restart ecomworker
 sudo /edx/bin/supervisorctl restart forum
-sudo /edx/bin/supervisorctl restart insights
+#sudo /edx/bin/supervisorctl restart insights
 sudo /edx/bin/supervisorctl restart notifier-celery-workers
 sudo /edx/bin/supervisorctl restart notifier-scheduler
 sudo /edx/bin/supervisorctl restart xqueue
