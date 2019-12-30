@@ -55,8 +55,8 @@
 sudo -H -u edxapp bash << EOF
 source /edx/app/edxapp/edxapp_env
 cd /edx/app/edxapp/edx-platform
-paver update_assets lms --settings=aws
-paver update_assets cms --settings=aws
+paver update_assets lms --settings=production
+paver update_assets cms --settings=production
 #
 #
 #Following is an example alternative way to call pave that only compiles your custom theme, skipping any others that come pre-shipped with Open edX
@@ -67,7 +67,6 @@ paver update_assets cms --settings=aws
 EOF
 
 # restart edx instances
-sudo /edx/bin/supervisorctl restart edxapp:
 /edx/bin/supervisorctl restart lms
 /edx/bin/supervisorctl restart cms
 /edx/bin/supervisorctl restart edxapp_worker:
