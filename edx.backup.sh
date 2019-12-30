@@ -26,6 +26,8 @@ S3_BUCKET="THE-NAME-OF-YOUR-AWS-S3-BUCKET"  #For this script to work you'll firs
 BACKUPS_DIRECTORY="/home/ubuntu/backups/"
 WORKING_DIRECTORY="/home/ubuntu/backup-tmp/"
 NUMBER_OF_BACKUPS_TO_RETAIN="30"      #Note: this only regards local storage (ie on the ubuntu server). All backups are retained in the S3 bucket forever.
+MYSQL_IP="RDS_IP"
+MONGODB_IP="MONGODB_IP"
 
 #Check to see if a working folder exists. if not, create it.
 if [ ! -d ${WORKING_DIRECTORY} ]; then
@@ -48,7 +50,7 @@ fi
 cd ${WORKING_DIRECTORY}
 
 #Backup MySQL databases
-MYSQL_CONN="-uroot -p'{$MYSQL_PWD}'"
+MYSQL_CONN="-h '{MYSQL_IP}' -u admin -p'{$MYSQL_PWD}'"
 echo "Backing up MySQL databases"
 echo "Reading MySQL database names..."
 mysql ${MYSQL_CONN} -ANe "SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT IN ('mysql','sys','information_schema','performance_schema')" > /tmp/db.txt
@@ -66,7 +68,7 @@ echo "Done backing up MySQL"
 echo "Backing up MongoDB"
 for db in edxapp cs_comment_service_development; do
     echo "Dumping Mongo db ${db}..."
-    mongodump -u admin -p"$MONGODB_PWD" -h localhost --authenticationDatabase admin -d ${db} --out mongo-dump-${NOW}
+    mongodump -u admin -p"$MONGODB_PWD" -h "$MONGODB_IP" --authenticationDatabase admin -d ${db} --out mongo-dump-${NOW}
 done
 echo "Done backing up MongoDB"
 
