@@ -46,14 +46,13 @@ if [ ! -d ${BACKUPS_DIRECTORY} ]; then
     echo "created backups folder ${BACKUPS_DIRECTORY}"
 fi
 
-
 cd ${WORKING_DIRECTORY}
 
 #Backup MySQL databases
-MYSQL_CONN="-h $MYSQL_IP -u admin -p'$MYSQL_PWD'"
+MYSQL_CONN="-h $MYSQL_IP -u admin --password=$MYSQL_PWD"
 echo "Backing up MySQL databases"
 echo "Reading MySQL database names..."
-mysql ${MYSQL_CONN} -ANe "SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT IN ('mysql','sys','information_schema','performance_schema')" > /tmp/db.txt
+mysql ${MYSQL_CONN} -ANe "SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT IN ('mysql','sys','information_schema','performance_schema','innodb','tmp')" > /tmp/db.txt
 DBS="--databases $(cat /tmp/db.txt)"
 NOW="$(date +%Y%m%dT%H%M%S)"
 SQL_FILE="mysql-data-${NOW}.sql"
