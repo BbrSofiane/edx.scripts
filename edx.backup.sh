@@ -65,7 +65,7 @@ echo "Done backing up MySQL"
 
 #Backup Mongo
 echo "Backing up MongoDB"
-for db in edxapp cs_comment_service_development; do
+for db in edxapp cs_comments_service_development; do
     echo "Dumping Mongo db ${db}..."
     mongodump -u admin -p"$MONGODB_PWD" -h "$MONGODB_IP" --authenticationDatabase admin -d ${db} --out mongo-dump-${NOW}
 done
