@@ -47,7 +47,7 @@ export OPENEDX_RELEASE=open-release/juniper.master
 wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/ansible-bootstrap.sh -O - | sudo -H bash
 
 # 3. (Optional) If this is a new installation, randomize the passwords:
-if [ ! -f "my-passwords.yml"]; then
+if test ! -f "my-passwords.yml"; then
     wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/generate-passwords.sh -O - | bash
 fi
 # 4. Install Open edX:
