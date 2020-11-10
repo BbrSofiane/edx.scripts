@@ -51,4 +51,5 @@ if test ! -f "my-passwords.yml"; then
     wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/generate-passwords.sh -O - | bash
 fi
 # 4. Install Open edX:
-wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/native.sh -O - | bash > install.out
+# wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/native.sh -O - | bash > install.out
+wget https://raw.githubusercontent.com/edunext/configuration/mfe/community_deployment/util/install/native.sh -O - | bash > install.out
