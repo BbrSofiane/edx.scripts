@@ -41,7 +41,7 @@ export LC_CTYPE="en_GB.UTF-8"
 #export OPENEDX_RELEASE=open-release/ginkgo.2
 # Note: sometimes there are important bug fixes in master that are not included in the named releases.
 #       to date i've always had the best luck with master.
-export OPENEDX_RELEASE=nedbat/tk.1106c
+export OPENEDX_RELEASE=open-release/koa.master
 
 # 2. Bootstrap the Ansible installation:
 wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/ansible-bootstrap.sh -O - | sudo -H bash
@@ -51,5 +51,4 @@ if test ! -f "my-passwords.yml"; then
     wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/generate-passwords.sh -O - | bash
 fi
 # 4. Install Open edX:
-# wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/native.sh -O - | bash > install.out
-wget https://raw.githubusercontent.com/edunext/configuration/mfe/community_deployment/util/install/native.sh -O - | bash > install.out
+wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/native.sh -O - | bash > install.out
