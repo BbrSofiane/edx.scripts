@@ -44,7 +44,7 @@ export LC_CTYPE="en_GB.UTF-8"
 export OPENEDX_RELEASE=open-release/koa.master
 
 # 2. Bootstrap the Ansible installation:
-wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/ansible-bootstrap.sh -O - | sudo -H bash
+wget https://raw.githubusercontent.com/edx/configuration/$OPENEDX_RELEASE/util/install/ansible-bootstrap.sh -O - | sudo -E bash
 
 # 3. (Optional) If this is a new installation, randomize the passwords:
 if test ! -f "my-passwords.yml"; then
