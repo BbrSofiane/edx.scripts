@@ -22,7 +22,7 @@
 #------------------------------------------------------------------
 
 ## This generates the plan
-structures.py --connection="mongodb://admin:<MONGODB ADMIN PASSWORD>@localhost:27017/?authSource=admin" \
+structures.py --connection="mongodb://admin:<MONGODB ADMIN PASSWORD>@<MONGO HOST>:27017/?authSource=admin" \
   --database-name edxapp \
   make_plan \
   -v DEBUG out.json \
@@ -30,6 +30,6 @@ structures.py --connection="mongodb://admin:<MONGODB ADMIN PASSWORD>@localhost:2
   --retain 5
 
 ### This performs the prune
-structures.py --connection="mongodb://admin:<MONGODB ADMIN PASSWORD>@localhost:27017/?authSource=admin" \
+structures.py --connection="mongodb://admin:<MONGODB ADMIN PASSWORD>@<MONGO HOST>:27017/?authSource=admin" \
   --database-name edxapp \
                 prune  out.json

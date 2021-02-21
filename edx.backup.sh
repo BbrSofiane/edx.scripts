@@ -27,6 +27,8 @@ S3_BUCKET="YOUR S3 BUCKET NAME"             # For this script to work you'll fir
 BACKUPS_DIRECTORY="/home/ubuntu/backups/"
 WORKING_DIRECTORY="/home/ubuntu/backup-tmp/"
 NUMBER_OF_BACKUPS_TO_RETAIN="10"            # Note: this only regards local storage (ie on the ubuntu server). All backups are retained in the S3 bucket forever.
+MYSQL_IP="RDS_IP"
+MONGODB_IP="MONGODB_IP"
 
 # Sanity check: is there an Open edX platform on this server?
 if [ ! -d "/edx/app/edxapp/edx-platform/" ]; then
@@ -58,12 +60,12 @@ cd ${WORKING_DIRECTORY}
 #------------------------------------------------------------------------------------------------------------------------
 echo "Backing up MySQL databases"
 echo "Reading MySQL database names..."
-mysql -uadmin -p"$MYSQL_PWD" -ANe "SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT IN ('mysql','sys','information_schema','performance_schema')" > /tmp/db.txt
+mysql -h $MYSQL_IP -u admin --password=$MYSQL_PWD -ANe "SELECT schema_name FROM information_schema.schemata WHERE schema_name NOT IN ('mysql','sys','information_schema','performance_schema')" > /tmp/db.txt
 DBS="--databases $(cat /tmp/db.txt)"
 NOW="$(date +%Y%m%dT%H%M%S)"
 SQL_FILE="mysql-data-${NOW}.sql"
 echo "Dumping MySQL structures..."
-mysqldump -uroot -p"$MYSQL_PWD" --add-drop-database ${DBS} > ${SQL_FILE}
+mysqldump -h $MYSQL_IP -u admin --password=$MYSQL_PWD" --add-drop-database ${DBS} > ${SQL_FILE}
 echo "Done backing up MySQL"
 
 #Tarball our mysql backup file
@@ -79,7 +81,7 @@ echo "Created tarball of backup data openedx-mysql-${NOW}.tgz"
 # Begin Backup Mongo
 #------------------------------------------------------------------------------------------------------------------------
 echo "Backing up MongoDB"
-for db in edxapp cs_comments_service_development; do
+for db in edxapp cs_comments_service; do
     echo "Dumping Mongo db ${db}..."
     mongodump -u admin -p"$MONGODB_PWD" -h "$MONGODB_IP" --authenticationDatabase admin -d ${db} --out mongo-dump-${NOW}
 done
