@@ -1,11 +1,10 @@
 #!/bin/sh
-# Native Open edX Ubuntu 16.04 64 bit Installation
+# Native Open edX Ubuntu 20.04 64 bit Installation
 # McDaniel
 # October 2017
 #
 # To stand up a pristine single-server instance of Open edX Ginkgo.1
 # this is a modification of the generic instructions from:
-#   Native Open edX Ubuntu 16.04 64 bit Installation
 #   https://openedx.atlassian.net/wiki/spaces/OpenOPS/pages/146440579/Native+Open+edX+Ubuntu+16.04+64+bit+Installation
 #
 # This script takes around 2 hours to complete. It is intended to be run unattended, on a background thread using
@@ -38,7 +37,6 @@ export LC_CTYPE="en_GB.UTF-8"
 #export LC_IDENTIFICATION=?~@~]es_ES.UTF-8?~@~]
 
 # 1. Set the OPENEDX_RELEASE variable:
-#export OPENEDX_RELEASE=open-release/ginkgo.2
 # Note: sometimes there are important bug fixes in master that are not included in the named releases.
 #       to date i've always had the best luck with master.
 export OPENEDX_RELEASE=open-release/koa.master
