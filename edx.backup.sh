@@ -26,7 +26,7 @@ S3_BUCKET="YOUR S3 BUCKET NAME"             # For this script to work you'll fir
 
 BACKUPS_DIRECTORY="/home/ubuntu/backups/"
 WORKING_DIRECTORY="/home/ubuntu/backup-tmp/"
-NUMBER_OF_BACKUPS_TO_RETAIN="10"            # Note: this only regards local storage (ie on the ubuntu server). All backups are retained in the S3 bucket forever.
+NUMBER_OF_BACKUPS_TO_RETAIN="4"            # Note: this only regards local storage (ie on the ubuntu server). All backups are retained in the S3 bucket forever.
 MYSQL_IP="RDS_IP"
 MONGODB_IP="MONGODB_IP"
 
@@ -65,7 +65,7 @@ DBS="--databases $(cat /tmp/db.txt)"
 NOW="$(date +%Y%m%dT%H%M%S)"
 SQL_FILE="mysql-data-${NOW}.sql"
 echo "Dumping MySQL structures..."
-mysqldump -h $MYSQL_IP -u admin --password=$MYSQL_PWD" --add-drop-database ${DBS} > ${SQL_FILE}
+mysqldump -h $MYSQL_IP -u admin --password=$MYSQL_PWD --add-drop-database ${DBS} > ${SQL_FILE}
 echo "Done backing up MySQL"
 
 #Tarball our mysql backup file
@@ -97,7 +97,7 @@ echo "Created tarball of backup data openedx-mongo-${NOW}.tgz"
 #------------------------------------------------------------------------------------------------------------------------
 
 
-#Prune the Backups/ folder by eliminating all but the 30 most recent tarball files
+#Prune the Backups/ folder by eliminating all but the 4 most recent tarball files
 echo "Pruning the local backup folder archive"
 if [ -d ${BACKUPS_DIRECTORY} ]; then
   cd ${BACKUPS_DIRECTORY}
